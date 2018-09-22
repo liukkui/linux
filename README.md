@@ -1,3 +1,5 @@
+
+```bash
 [root@centos6 ~]#ll /etc
 total 2312
 drwxr-xr-x.  3 root root   4096 Sep 19 11:34 abrt
