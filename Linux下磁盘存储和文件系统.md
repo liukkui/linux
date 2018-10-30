@@ -476,10 +476,10 @@ e.添加到fstab中，挂载
 不同之处在于：
  mdadm -C -a yes /dev/md0 -l 5 -n 3 -c 16M  -x 1 /dev/sd{b1,c1,d1,e1} -x 指定一个做热备盘
 
-禁用raid，然后清楚分区上的raid信息
- mdadm -C /dev/md0 -禁用raid
- mdadm -A /dev/md0 -启用raid
- mdadm --zero-superblock /dev/sdb1 -清楚分区上的raid信息
+禁用raid，然后清楚分区上的raid信息  
+ >mdadm -C /dev/md0 -禁用raid  
+ mdadm -A /dev/md0 -启用raid  
+ mdadm --zero-superblock /dev/sdb1 -清楚分区上的raid信息  
 
 ---------------------------------
 ----------------------------------
