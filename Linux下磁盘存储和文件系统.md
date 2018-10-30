@@ -47,12 +47,7 @@ kpartx -a /dev/DEVICE -f: force
 partx -d --nr M-N /dev/DEVICE  
 CentOS 5，7: 使用partprobe  
 partprobe [/dev/DEVICE]  
-
-hexdump -C -n 512 /dev/sdb  
-alias scandisk="echo '- - -' > /sys/class/scsi_host/host0/scan"  
-echo "alias aliasname='command'" >> ~/.bash_aliases && source ~/.bash_aliases  
-
-fdisk -l /dev/sdb  
+ 
 
 ---------------------------------
 ----------------------------------
