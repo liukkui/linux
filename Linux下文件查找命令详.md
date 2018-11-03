@@ -243,37 +243,50 @@ find /sbin -perm +7000 | xargs ls –l 查找特殊权限的文件
 find和xargs格式：find | xargs COMMAND  
 
 1.touch {1.50000}命令不支持批量个文件的，（echo可以），所以可以通过xargs传参数给touch.  
-  echo f{1.500000} | xargs touch  echo生成的结果，不是作为touch的输入，而是作为touch的参数  
+  echo f{1.500000} | xargs touch  echo生成的结果，不是作为touch的输入，而是作为touch的参数 
+  
 2.find /sbin -perm +7000 | xargs ls –l 查找特殊权限的文件  
+
 3.备份配置文件，添加.orig这个扩展名  
   find -name “*.conf” -exec cp {} {}.orig \;  
+  
 4.提示删除存在时间超过３天以上的joe的临时文件  
   find /tmp -ctime +3 -user joe -ok rm {} \;  
+  
 5.在主目录中寻找可被其它用户写入的文件并去掉写权限  
   find ~ -perm -002 -exec chmod o-w {} \;  
+  
 6.查找/data下的权限为644，后缀为sh的普通文件，增加执行权限  
   find /data –type f -perm 644 -name “*.sh” –exec chmod 755 {} \;  
+  
 7.查看/home的目录  
   find /home –type d -ls  
 
 practice:  
 1、查找/var目录下属主为root，且属组为mail的所有文件  
   find /var -user root -a -group mail  
+  
 2、查找/var目录下不属于root、lp、gdm的所有文件  
   find /var ! \( -user root -o -user lp -o -user gdm \) |wc -l  
   find /var ! -user root -a ! -user lp -a ! -user gdm  
+  
 3、查找/var目录下最近一周内其内容修改过，同时属主不为root，也不是postfix的文件  
   find /var -mtime -7 ! -user root -a ! -user postfix  
   find /var -mtime -7 ! \( -user root -o -user postfix \）  
+  
 4、查找当前系统上没有属主或属组，且最近一个周内曾被访问过的文件  
   find / -atime -7 -nouser -o -nogroup  
   find / -atime -7 \( -nouser -o -nogroup \)  
+  
 5、查找/etc目录下大于1M且类型为普通文件的所有文件  
   find /etc -size +1M -type f  
+  
 6、查找/etc目录下所有用户都没有写权限的文件  
   find /etc ! -perm /222  
+  
 7、查找/etc目录下至少有一类用户没有执行权限的文件  
   find /etc/ ! -perm -11  
+  
 8、查找/etc/init.d目录下，所有用户都有执行权限，且其它用户有写权限的文件  
   find /etc/init.d -perm -111 -a -perm -002  
   find /etc/init.d -perm -113  
